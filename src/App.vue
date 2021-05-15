@@ -1,9 +1,12 @@
 <template>
   <div class="container mx-auto flex flex-col items-center  p-4">
-    <div v-if="loading" class="fixed w-100 h-100 opacity-80 bg-purple-800 inset-0 z-50 flex items-center justify-center">
-      <svg class="animate-spin -ml-1 mr-3 h-12 w-12 text-white" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+    <div v-if="loading"
+         class="fixed w-100 h-100 opacity-80 bg-purple-800 inset-0 z-50 flex items-center justify-center">
+      <svg class="animate-spin -ml-1 mr-3 h-12 w-12 text-white" xmlns="http://www.w3.org/2000/svg" fill="none"
+           viewBox="0 0 24 24">
         <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
-        <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
+        <path class="opacity-75" fill="currentColor"
+              d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
       </svg>
     </div>
 
@@ -43,9 +46,10 @@
               CHD
             </span>
             </div>
-            <div class="text-sm text-red-600">Такой тикер уже добавлен</div>
+            <div v-if="loading" class="text-sm text-red-600">Такой тикер уже добавлен</div>
           </div>
         </div>
+
         <button
             @click="add"
             type="button"
@@ -162,27 +166,38 @@ export default {
       tickers: [],
       sel: null,
       graph: [],
-      loading: false
+
     }
   },
   created() {
-    this.loadPage()
+const tickersData = localStorage.getItem("cryptonomicon-list")
+    if (tickersData) {
+      this.tickers = JSON.parse(tickersData)
+      this.tickers.forEach(ticker => {
+        this.subscribeToUpdates(ticker.name)
+      })
+    }
   },
 
   methods: {
+    subscribeToUpdates(tickerName) {
+      setInterval(async () => {
+        const f = await fetch(`https://min-api.cryptocompare.com/data/price?fsym=${tickerName}&tsyms=USD&api_key=bb65725411c9b7f2a4c0af1f0bd98d0e66dfb6c89d77f517afe06ff234f1a131`)
+        const data = await f.json()
+        this.tickers.find(t => t.name === tickerName).price = data.USD > 1 ? data.USD.toFixed(2) : data.USD.toPrecision(2)
+        if (this.sel?.name === tickerName) {
+          this.graph.push(data.USD)
+        }
+      }, 5000)
+
+      this.ticker = ''
+    },
     add() {
       const currentTicker = {name: this.ticker.toUpperCase(), price: '-'}
       this.tickers.push(currentTicker)
 
-      setInterval(async () => {
-        const f = await fetch(`https://min-api.cryptocompare.com/data/price?fsym=${currentTicker.name}&tsyms=USD&api_key=bb65725411c9b7f2a4c0af1f0bd98d0e66dfb6c89d77f517afe06ff234f1a131`)
-        const data = await f.json()
-        this.tickers.find(t => t.name === currentTicker.name).price = data.USD > 1 ? data.USD.toFixed(2) : data.USD.toPrecision(2)
-        if (this.sel?.name === currentTicker.name) {
-          this.graph.push(data.USD)
-        }
-      }, 5000)
-      this.ticker = ''
+      localStorage.setItem('cryptonomicon-list', JSON.stringify(this.tickers))
+      this.subscribeToUpdates(currentTicker.name)
     },
     handleRemove(tickerToRemove) {
       this.tickers = this.tickers.filter(t => t !== tickerToRemove)
@@ -196,14 +211,19 @@ export default {
     normalizeGraph() {
       const maxValue = Math.max(...this.graph)
       const minValue = Math.min(...this.graph)
-      return this.graph.map( price => 5 + ((price - minValue ) * 95) / (maxValue - minValue))
+      return this.graph.map(price => 5 + ((price - minValue) * 95) / (maxValue - minValue))
     },
     loadPage() {
       this.loading = true
       setTimeout(() => this.loading = false, 2000)
+    },
+    async getListTickers() {
+      const resp = await fetch('https://min-api.cryptocompare.com/data/all/coinlist?summary=true')
+      const data = await resp.json()
+      this.coinList.push(Object.keys(data['Data']))
     }
 
-  }
+  },
 };
 </script>
 

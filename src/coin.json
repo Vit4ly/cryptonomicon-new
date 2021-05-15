@@ -1,0 +1,124 @@
+{
+  "Data": {
+    "42": {
+      "Id": "4321",
+      "ImageUrl": "/media/35650717/42.jpg",
+      "Symbol": "42",
+      "FullName": "42 Coin (42)"
+    },
+    "300": {
+      "Id": "749869",
+      "ImageUrl": "/media/27010595/300.png",
+      "Symbol": "300",
+      "FullName": "300 token (300)"
+    },
+    "365": {
+      "Id": "33639",
+      "ImageUrl": "/media/352070/365.png",
+      "Symbol": "365",
+      "FullName": "365Coin (365)"
+    },
+    "404": {
+      "Id": "21227",
+      "ImageUrl": "/media/35650851/404-300x300.jpg",
+      "Symbol": "404",
+      "FullName": "404Coin (404)"
+    },
+    "433": {
+      "Id": "926547",
+      "ImageUrl": "/media/34836095/433.png",
+      "Symbol": "433",
+      "FullName": "433 Token (433)"
+    },
+    "611": {
+      "Id": "20909",
+      "ImageUrl": "/media/35650940/611-sixeleven.png",
+      "Symbol": "611",
+      "FullName": "SixEleven (611)"
+    },
+    "808": {
+      "Id": "28223",
+      "ImageUrl": "/media/351513/808.png",
+      "Symbol": "808",
+      "FullName": "808 (808)"
+    },
+    "888": {
+      "Id": "29462",
+      "ImageUrl": "/media/351639/888.png",
+      "Symbol": "888",
+      "FullName": "Octocoin (888)"
+    },
+    "1337": {
+      "Id": "20824",
+      "ImageUrl": "/media/35520987/elite.png",
+      "Symbol": "1337",
+      "FullName": "EliteCoin (1337)"
+    },
+    "2015": {
+      "Id": "3744",
+      "ImageUrl": "/media/20180/2015.png",
+      "Symbol": "2015",
+      "FullName": "2015 coin (2015)"
+    },
+    "BTCD": {
+      "Id": "4400"
+    },
+    "ImageUrl": "/media/19630/btcd_1.png",
+    "Symbol": "BTCD",
+    "FullName": "BitcoinDark (BTCD)"
+  },
+  "CRAIG": {
+    "Id": "4425",
+    "ImageUrl": "/media/20022/craig.png",
+    "Symbol": "CRAIG",
+    "FullName": "CraigsCoin (CRAIG)"
+  },
+  "XBS": {
+    "Id": "5023",
+    "ImageUrl": "/media/351060/xbs_1.png",
+    "Symbol": "XBS",
+    "FullName": "Bitstake (XBS)"
+  },
+  "XPY": {
+    "Id": "5030",
+    "ImageUrl": "/media/20076/xpy_1.png",
+    "Symbol": "XPY",
+    "FullName": "PayCoin (XPY)"
+  },
+  "PRC": {
+    "Id": "3638",
+    "ImageUrl": "/media/20393/prc.png",
+    "Symbol": "PRC",
+    "FullName": "ProsperCoin (PRC)"
+  },
+  "YBC": {
+    "Id": "3639",
+    "ImageUrl": "/media/19975/ybc.png",
+    "Symbol": "YBC",
+    "FullName": "YbCoin (YBC)"
+  },
+  "DANK": {
+    "Id": "3640",
+    "ImageUrl": "/media/20247/dank.png",
+    "Symbol": "DANK",
+    "FullName": "DarkKush (DANK)"
+  },
+  "GIVE": {
+    "Id": "3641",
+    "ImageUrl": "/media/20297/give.png",
+    "Symbol": "GIVE",
+    "FullName": "GiveCoin (GIVE)"
+  },
+  "KOBO": {
+    "Id": "3642",
+    "ImageUrl": "/media/35521133/kobo.png",
+    "Symbol": "KOBO",
+    "FullName": "KoboCoin (KOBO)"
+  },
+  "DT": {
+    "Id": "3643",
+    "ImageUrl": "/media/20031/dt.png",
+    "Symbol": "DT",
+    "FullName": "DarkToken"
+  }
+}
